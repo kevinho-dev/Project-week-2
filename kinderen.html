@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<title>Vragen voor Kinderen</title>
+
+</head>
+<body>
+ 
+<header>
+<a href="#" class="back">← Terug naar categorieën</a>
+<h1>Vragen voor Kinderen</h1>
+ 
+  <div class="progress-wrapper">
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+<div class="progress-text">Vraag 1 van 4</div>
+</div>
+</header>
+ 
+<main>
+<h2>Welk genre spreekt je het meest aan?</h2>
+ 
+  <div class="options">
+<div class="option" onclick="selectOption('Avontuur')">
+
+      Avontuur <span class="arrow">→</span>
+</div>
+<div class="option" onclick="selectOption('Fantasy')">
+
+      Fantasy <span class="arrow">→</span>
+</div>
+<div class="option" onclick="selectOption('Dieren')">
+
+      Dieren <span class="arrow">→</span>
+</div>
+<div class="option" onclick="selectOption('Vriendschap')">
+
+      Vriendschap <span class="arrow">→</span>
+</div>
+</div>
+</main>
+ 
+<div class="help">?</div>
+ 
+<script>
+
+  function selectOption(option) {
+
+    console.log("Gekozen genre:", option);
+
+    // hier kun je navigatie of state toevoegen
+
+  }
+</script>
+ 
+</body>
+</html>
+
+ 
