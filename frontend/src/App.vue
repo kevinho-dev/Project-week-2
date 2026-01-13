@@ -1,5 +1,13 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import inloggen from './components/inloggen.vue'
+
+class btn-login {
+  constructor(parameters) {
+    addevenlistener('click', function() {
+      window.location.href = 'components/inloggen';
+    });
+  }
+}
 </script>
 
 <template>
