@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-//import axios from 'axios';
+import axios from 'axios';
 
 const categories = ref([]);
 const selectionPath = ref([]);
 const isLoginModalOpen = ref(false);
-const API_URL = "http://localhost/backend/get_categories.php";
+const API_URL = "http://localhost/lessen/Project-week-2/Backend/get_categories.php";
 
 const toggleLoginModal = () => {
   isLoginModalOpen.value = !isLoginModalOpen.value;
