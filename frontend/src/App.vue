@@ -11,8 +11,33 @@ const toggleLoginModal = () => {
   isLoginModalOpen.value = !isLoginModalOpen.value;
 };
 
-</script>
+const fetchCategories = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    categories.value = response.data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+};
 
+const handleCategoryclick = (category) => {
+  selectionPath.value.push(category);
+};
+
+const reserSearch = () => {
+  selectionPath.value = [];
+};
+
+const handleLogin = () => {
+  // Implement login logic here
+  console.log('Login submitted');
+  toggleLoginModal();
+};
+
+onMounted(() => {
+  fetchCategories();
+});
+</script>
 <template>
 <div class="app-home">
   <header class="navbar">
@@ -26,7 +51,16 @@ const toggleLoginModal = () => {
     </div>
   </header>
   <main class="content">
-<div class=""></div>
+<div class="section-title">
+  <h2>Select Your Category</h2>
+  <p v-if="selectionPath.length>0">progress: {{ selectionPath.map(s => s.name).join('>') }}</p>
+</div>
+<div class="categories-container">
+  <div v-for="category in categories" :key="category.category_id" class="category_card" @click="handleCategoryclick(category)">
+  <div class="icon-placeholder"></div> <h3>{{ category.category_name }}</h3>
+  </div>
+</div>
+<button v-if="selectionPath.length> 0" @click="reserSearch" class="btn-reset">Back to start</button>
   </main>
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="toggleLoginModal">
   <div class="modal-content">
