@@ -1,5 +1,5 @@
 <?php
-// backend/get_categories.php
+
 include 'db_config.php';
 
 $parentId = isset($_GET['parent_id']) ? $_GET['parent_id'] : null;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 jan 2026 om 09:41
+-- Gegenereerd op: 14 jan 2026 om 13:48
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -51,6 +51,15 @@ CREATE TABLE `categories` (
   `parent_id` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT NULL CHECK (`level` between 1 and 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`, `parent_id`, `level`) VALUES
+(1, 'kinderen', NULL, 1),
+(2, 'volwassenen', NULL, 1),
+(3, 'ouderen', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +160,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT voor een tabel `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `complaints`
