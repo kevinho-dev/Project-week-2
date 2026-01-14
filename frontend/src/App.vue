@@ -21,7 +21,11 @@ const fetchCategories = async () => {
 };
 
 const handleCategoryclick = (category) => {
-  selectionPath.value.push(category);
+  selectionPath.value.push({
+    id: category.category_id,
+    name: category.category_name
+  });
+  fetchCategories(category.category_id);
 };
 
 const reserSearch = () => {
