@@ -88,6 +88,22 @@ onMounted(() => {
             <span class="badge-rec">Aanbevolen voor u</span>
             <span v-if="selectedBook.is_bestseller" class="badge-bestseller"> Bestseller</span>
           </div>
+          <div class="book-main-content">
+            <div class="book-cover-art">📖</div>
+            
+            <div class="book-info">
+              <h1>{{ selectedBook.title }}</h1>
+              <p class="author-name">door {{ selectedBook.author }}</p>
+              
+              <div class="book-meta">
+                <span :class="{'in-stock': selectedBook.stock_quantity > 0, 'out-stock': selectedBook.stock_quantity <= 0}">
+                  ● {{ selectedBook.stock_quantity > 0 ? 'Op voorraad' : 'Niet op voorraad' }}
+                </span>
+                <span>• 4.8 ⭐</span>
+              </div>
+              </div>
+            </div>
+
 
   </main>
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="toggleLoginModal">
