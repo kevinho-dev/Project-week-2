@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
-const categories = ref([]);
+const items = ref([]);
 const selectionPath = ref([]);
+const selectedBook = ref([]);
 const isLoginModalOpen = ref(false);
 const API_URL = "http://localhost/lessen/Project-week-2/Backend/get_categories.php";
 
@@ -11,13 +12,11 @@ const toggleLoginModal = () => {
   isLoginModalOpen.value = !isLoginModalOpen.value;
 };
 
-const fetchCategories = async () => {
+const fetchData = async (parentId = null) => {
   try {
-    const response = await axios.get(API_URL);
-    categories.value = response.data;
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-  }
+    const res = await axios.get(API_URL, { params: { parent_id: parentId } });
+    items.value = res.data;
+  } catch (e) { console.error("Error fetching data", e); }
 };
 
 const handleCategoryclick = (category) => {
