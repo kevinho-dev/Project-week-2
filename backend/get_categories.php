@@ -7,7 +7,9 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include 'db_config.php';
 
-$parentId = isset($_GET['parent_id']) ? $_GET['parent_id'] : null;
+$parentId = (isset($_GET['parent_id']) && $_GET['parent_id'] !== 'null' && $_GET['parent_id'] !== '') 
+            ? intval($_GET['parent_id']) 
+            : null;
 $data =[];
 //retrieve the categories belonging to the chosen ID
 if($parentId === null || $parentId === '' || $parentId ==='null') {
@@ -15,14 +17,14 @@ if($parentId === null || $parentId === '' || $parentId ==='null') {
     $sql ="SELECT * FROM categories WHERE parent_id IS NULL";
 } else{ 
     // 2 - 4 categories
-    $sql = "SELECT *FROM categories WHERE parent_id = ".intval($parentId);
+    $sql = "SELECT *FROM categories WHERE parent_id = $parentId";
 }
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-       $date[] = ["type" => "category", "content" => ["category_id" => 
+       $data[] = ["type" => "category", "content" => ["category_id" => 
         $row['category_id'], "category_name" => 
         $row['category_name'], "level" => 
         $row['level']
@@ -45,7 +47,7 @@ if ($result->num_rows > 0) {
         }
 
 }
-$data['debug_sql'] = $sql; 
+
 
 echo json_encode($data);
 $conn->close();
