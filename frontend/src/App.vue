@@ -6,7 +6,7 @@ const items = ref([]);
 const selectionPath = ref([]);
 const selectedBook = ref([]);
 const isLoginModalOpen = ref(false);
-const API_URL = "http://localhost/lessen/Project-week-2/Backend/get_categories.php";
+const API_URL = "http://localhost/Project-week-2/Backend/get_categories.php";
 
 const toggleLoginModal = () => {
   isLoginModalOpen.value = !isLoginModalOpen.value;
