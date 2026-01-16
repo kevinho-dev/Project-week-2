@@ -12,7 +12,7 @@ $data =[];
 //retrieve the categories belonging to the chosen ID
 if($parentId === null || $parentId === '' || $parentId ==='null') {
     // first category
-    $sql ="SELECT *FROM categories WHERE parent_id is NULL";
+    $sql ="SELECT * FROM categories WHERE parent_id IS NULL";
 } else{ 
     // 2 - 4 categories
     $sql = "SELECT *FROM categories WHERE parent_id = ".intval($parentId);
@@ -45,6 +45,7 @@ if ($result->num_rows > 0) {
         }
 
 }
+$data['debug_sql'] = $sql; 
 
 echo json_encode($data);
 $conn->close();
