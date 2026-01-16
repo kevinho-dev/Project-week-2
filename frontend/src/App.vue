@@ -101,9 +101,21 @@ onMounted(() => {
                 </span>
                 <span>• 4.8 ⭐</span>
               </div>
+             <p class="summary-text">{{ selectedBook.summary }}</p>
+              
+              <div class="pricing-actions">
+                <button class="btn-rent" :disabled="selectedBook.stock_quantity <= 0">
+                  Lenen € {{ selectedBook.rent_price }}
+                </button>
+                <button class="btn-buy">
+                  Kopen € {{ selectedBook.buy_price }}
+                </button>
               </div>
             </div>
+          </div>
+        </div>
 
+      </div>
 
   </main>
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="toggleLoginModal">
