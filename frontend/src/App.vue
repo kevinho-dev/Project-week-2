@@ -27,9 +27,12 @@ const handleSelect = (item) => {
     fetchData(item.content.category_id);
   }
 };
-
-const reserSearch = () => {
-  selectionPath.value = [];
+//add back-navigation logic to allow users to return to previous category levels
+const goBack = () => {
+  selectedBook.value = null;
+  selectionPath.value.pop();
+  const lastId = selectionPath.value.length > 0 ? selectionPath.value[selectionPath.value.length-1].id : null;
+  fetchData(lastId);
 };
 
 const handleLogin = () => {
