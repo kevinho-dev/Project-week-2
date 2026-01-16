@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
     // does't find any category, that's mean we are in the 5th level.
     //search now for books conect with category_id
      if($parentId !== null){
-        $bookSql = "SELECT book_id, title, author, summary, buy_price, rent_price, stock_quantity, is_bestseller FROM books WHERE category_id =".intval($parentId);
+        $bookSql = "SELECT book_id, title, author, summary, buy_price, rent_price, stock_quantity, is_bestseller, img FROM books WHERE category_id =".intval($parentId);
         $bookResult = $conn->query($bookSql);
 
         while($bookRow = $bookResult->fetch_assoc()){

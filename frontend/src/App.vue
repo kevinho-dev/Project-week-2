@@ -98,8 +98,16 @@ onMounted(() => {
             <span v-if="selectedBook.is_bestseller" class="badge-bestseller"> Bestseller</span>
           </div>
           <div class="book-main-content">
-            <div class="book-cover-art">📖</div>
+            <div class="book-cover-art">
+              <img 
+              v-if="selectedBook.img"
+              :src="selectedBook.img"
+              :alt="selectedBook.img"
+              class="book-img"
+              ?>
             
+            <span v-else>📖</span>
+            </div>
             <div class="book-info">
               <h1>{{ selectedBook.title }}</h1>
               <p class="author-name">door {{ selectedBook.author }}</p>

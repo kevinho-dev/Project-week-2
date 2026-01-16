@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 jan 2026 om 13:48
+-- Gegenereerd op: 16 jan 2026 om 14:43
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -36,8 +36,16 @@ CREATE TABLE `books` (
   `buy_price` decimal(10,2) DEFAULT NULL,
   `rent_price` decimal(10,2) DEFAULT NULL,
   `stock_quantity` int(11) DEFAULT 0,
-  `is_bestseller` tinyint(1) DEFAULT 0
+  `is_bestseller` tinyint(1) DEFAULT 0,
+  `img` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `books`
+--
+
+INSERT INTO `books` (`book_id`, `title`, `author`, `summary`, `category_id`, `buy_price`, `rent_price`, `stock_quantity`, `is_bestseller`, `img`) VALUES
+(1, 'Beer en Vogel gaan op avontuur in Winter Wonderland', 'Lambert, Jonny', 'Het heeft gesneeuwd! Beer en Vogel gaan wandelen in de bergen. Daar zien ze allerlei winterse taferelen. Kijk je mee? Prentenboek met zoekplaten in kleur. Vanaf ca. 2 jaar.', 27, 20.00, 5.00, 3, 2, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2025230197;ppn=449739317;isbn=9789048323098;key=1617083;');
 
 -- --------------------------------------------------------
 
@@ -59,7 +67,32 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `category_name`, `parent_id`, `level`) VALUES
 (1, 'kinderen', NULL, 1),
 (2, 'volwassenen', NULL, 1),
-(3, 'ouderen', NULL, 1);
+(3, 'ouderen', NULL, 1),
+(4, 'Avontuur', 1, 2),
+(5, 'Fantasy', 1, 2),
+(8, 'Dieren', 1, 2),
+(9, 'Vriendschap', 1, 2),
+(10, '', NULL, NULL),
+(11, 'Vrolijk', 4, 3),
+(12, 'Spannend', 5, 3),
+(13, 'Grappig', 5, 3),
+(14, 'Ontroerend', 5, 3),
+(15, 'Vrolijk', 5, 3),
+(16, 'Spannend', 4, 3),
+(17, 'Grappig', 4, 3),
+(18, 'Ontroerend', 4, 3),
+(19, 'Kort(<200 pagina\'s)', 15, 4),
+(20, 'Gemiddeld (200 - 400 pagina\'s)', 15, 4),
+(21, 'LANG(> 400 pagina\'s) ', 15, 4),
+(22, 'Maakt niet uit', 15, 4),
+(23, 'Kort ( < 200 pagina\'s)', 11, 4),
+(24, 'Gemiddeld (200 - 400 pagina\'s)', 11, 4),
+(25, 'Lang (> 400 pagina\'s)', 11, 4),
+(26, 'Maakt niet uit', 11, 4),
+(27, 'Fantasiewerled', 23, 5),
+(28, 'School', 23, 5),
+(29, 'NAtuur', 23, 5),
+(30, 'Thuis', 23, 5);
 
 -- --------------------------------------------------------
 
@@ -154,13 +187,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT voor een tabel `complaints`
