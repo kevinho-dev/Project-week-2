@@ -75,6 +75,13 @@ onMounted(() => {
             <p>Ontdek boeiende verhalen voor {{ item.content.category_name.toLowerCase() }}</p>
           </div>
         </div>
+       <div v-else-if="!selectedBook" class="options-list">
+          <h2 class="question-text">{{ dynamicQuestion }}</h2>
+          <div v-for="item in items" :key="item.content.category_id || item.content.book_id" 
+               class="list-option" @click="handleSelect(item)">
+            <span>{{ item.content.category_name || item.content.title }}</span>
+            <span class="arrow">→</span>
+          </div>
         </div>
 <div class="categories-container">
   <div v-for="category in categories" :key="category.category_id" class="category_card" @click="handleCategoryclick(category)">
