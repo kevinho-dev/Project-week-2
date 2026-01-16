@@ -48,7 +48,7 @@ const handleLogin = () => {
 };
 
 onMounted(() => {
-  fetchCategories();
+  fetchData();
 });
 </script>
 <template>
