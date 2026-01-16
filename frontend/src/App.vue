@@ -83,12 +83,15 @@ onMounted(() => {
             <span class="arrow">→</span>
           </div>
         </div>
-<div class="categories-container">
-  <div v-for="category in categories" :key="category.category_id" class="category_card" @click="handleCategoryclick(category)">
-  <div class="icon-placeholder"></div> <h3>{{ category.category_name }}</h3>
-  </div>
-</div>
-<button v-if="selectionPath.length> 0" @click="reserSearch" class="btn-reset">Back to start</button>
+        <div v-else-if="!selectedBook" class="options-list">
+          <h2 class="question-text">{{ dynamicQuestion }}</h2>
+          <div v-for="item in items" :key="item.content.category_id || item.content.book_id" 
+               class="list-option" @click="handleSelect(item)">
+            <span>{{ item.content.category_name || item.content.title }}</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+
   </main>
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="toggleLoginModal">
   <div class="modal-content">
