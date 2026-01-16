@@ -19,12 +19,13 @@ const fetchData = async (parentId = null) => {
   } catch (e) { console.error("Error fetching data", e); }
 };
 
-const handleCategoryclick = (category) => {
-  selectionPath.value.push({
-    id: category.category_id,
-    name: category.category_name
-  });
-  fetchCategories(category.category_id);
+const handleSelect = (item) => {
+  if (item.type === 'book') {
+    selectedBook.value = item.content;
+  } else {
+    selectionPath.value.push({ id: item.content.category_id, name: item.content.category_name });
+    fetchData(item.content.category_id);
+  }
 };
 
 const reserSearch = () => {
