@@ -62,6 +62,20 @@ onMounted(() => {
           <div class="progress-track">
             <div class="progress-fill" :style="{ width: progressPercentage + '%' }"></div>
           </div>
+       <p class="step-text">Vraag {{ selectionPath.length }} van 5</p>
+        </div>
+      </div>
+      <div class="display-area">
+        
+        <div v-if="selectionPath.length === 0" class="hero-grid">
+          <div v-for="item in items" :key="item.content.category_id" 
+               class="hero-card" @click="handleSelect(item)">
+            <div class="card-icon">👤</div>
+            <h2>{{ item.content.category_name }}</h2>
+            <p>Ontdek boeiende verhalen voor {{ item.content.category_name.toLowerCase() }}</p>
+          </div>
+        </div>
+        </div>
 <div class="categories-container">
   <div v-for="category in categories" :key="category.category_id" class="category_card" @click="handleCategoryclick(category)">
   <div class="icon-placeholder"></div> <h3>{{ category.category_name }}</h3>
