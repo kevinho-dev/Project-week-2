@@ -54,11 +54,14 @@ onMounted(() => {
       <button class="btn-regester">Word lid</button>
     </div>
   </header>
-  <main class="content">
-<div class="section-title">
-  <h2>Select Your Category</h2>
-  <p v-if="selectionPath.length>0">progress: {{ selectionPath.map(s => s.name).join('>') }}</p>
-</div>
+  <main class="main-content">
+<div v-if="selectionPath.length > 0" class="stepper-header">
+        <button @click="goBack" class="back-link">← Terug naar categorieën</button>
+        <h1 class="page-title">Vragen voor {{ selectionPath[0].name }}</h1>
+        <div class="progress-wrapper">
+          <div class="progress-track">
+            <div class="progress-fill" :style="{ width: progressPercentage + '%' }"></div>
+          </div>
 <div class="categories-container">
   <div v-for="category in categories" :key="category.category_id" class="category_card" @click="handleCategoryclick(category)">
   <div class="icon-placeholder"></div> <h3>{{ category.category_name }}</h3>
