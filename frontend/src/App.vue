@@ -11,14 +11,14 @@ const API_URL = "http://localhost/lessen/Project-week-2/Backend/get_categories.p
 const toggleLoginModal = () => {
   isLoginModalOpen.value = !isLoginModalOpen.value;
 };
-
+//add core logic for fetching hierarchy data from PHP backend(API)
 const fetchData = async (parentId = null) => {
   try {
     const res = await axios.get(API_URL, { params: { parent_id: parentId } });
     items.value = res.data;
   } catch (e) { console.error("Error fetching data", e); }
 };
-
+//handle item selection with conditional fetching and book detail display
 const handleSelect = (item) => {
   if (item.type === 'book') {
     selectedBook.value = item.content;
@@ -34,6 +34,12 @@ const goBack = () => {
   const lastId = selectionPath.value.length > 0 ? selectionPath.value[selectionPath.value.length-1].id : null;
   fetchData(lastId);
 };
+//add computed properties for dynamic progress tracking and contextual questions
+const progressPercentage = computed(() => (selectionPath.value.length / 5) * 100);
+const dynamicQuestion = computed(() => {
+  const qs = ["Welk genre spreekt je het meest aan?", "Waar mag het verhaal zich afspelen?", "Kies een schrijfstijl", "Bijna daar..."];
+  return qs[selectionPath.value.length - 1] || "Kies een optie";
+});
 
 const handleLogin = () => {
   // Implement login logic here
