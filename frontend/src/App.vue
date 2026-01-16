@@ -83,14 +83,11 @@ onMounted(() => {
             <span class="arrow">→</span>
           </div>
         </div>
-        <div v-else-if="!selectedBook" class="options-list">
-          <h2 class="question-text">{{ dynamicQuestion }}</h2>
-          <div v-for="item in items" :key="item.content.category_id || item.content.book_id" 
-               class="list-option" @click="handleSelect(item)">
-            <span>{{ item.content.category_name || item.content.title }}</span>
-            <span class="arrow">→</span>
+      <div v-else class="book-detail-card">
+          <div class="recommendation-header">
+            <span class="badge-rec">Aanbevolen voor u</span>
+            <span v-if="selectedBook.is_bestseller" class="badge-bestseller"> Bestseller</span>
           </div>
-        </div>
 
   </main>
   <div v-if="isLoginModalOpen" class="modal-overlay" @click.self="toggleLoginModal">
