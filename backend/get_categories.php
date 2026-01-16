@@ -8,13 +8,14 @@ header("Content-Type: application/json; charset=UTF-8");
 include 'db_config.php';
 
 $parentId = isset($_GET['parent_id']) ? $_GET['parent_id'] : null;
-
-if ($parentId === null) {
-    // Fetch Level 1 categories (e.g., Kids, Adults, Seniors)
-    $sql = "SELECT * FROM Categories WHERE parent_id IS NULL AND level = 1";
-} else {
-    // Fetch sub-categories based on selection
-    $sql = "SELECT * FROM Categories WHERE parent_id = " . intval($parentId);
+$data =[];
+//retrieve the categories belonging to the chosen ID
+if($parentId === null || $parentId === '' || $parentId ==='null') {
+    // first category
+    $sql ="SELECT *FROM categories WHERE parent_id is NULL";
+} else{ 
+    // 2 - 4 categories
+    $sql = "SELECT *FROM categories WHERE parent_id = ".intval($parentId);
 }
 
 $result = $conn->query($sql);
