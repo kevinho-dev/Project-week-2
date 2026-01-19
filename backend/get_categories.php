@@ -28,8 +28,8 @@ if ($result->num_rows > 0) {
         $row['category_id'], "category_name" => 
         $row['category_name'], "level" => 
         $row['level']
-       ]
-       ];
+        ]];
+       
     }
 
 }else{
