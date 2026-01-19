@@ -15,9 +15,9 @@ $data =[];
 if($parentId === null || $parentId === '' || $parentId ==='null') {
     // first category
     $sql ="SELECT * FROM categories WHERE parent_id IS NULL";
-} else{ 
+} else{
     // 2 - 4 categories
-    $sql = "SELECT *FROM categories WHERE parent_id = $parentId";
+    $sql = "SELECT * FROM categories WHERE parent_id = $parentId";
 }
 
 $result = $conn->query($sql);
