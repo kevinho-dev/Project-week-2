@@ -18,7 +18,7 @@ if (!empty($data->email) && !empty($data->$password) && !empty($data->username))
     VALUES ('$full_name', '$email', '$password_hash', '$role')";
 
     if ($conn->query($sql)){
-        echo json_encode(["message" => "Success"];
+        echo json_encode(["message" => "Success"]);
     }else{
         http_response_code(400);
         echo json_encode(["error" => "Email already registered"]);
