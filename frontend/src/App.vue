@@ -140,7 +140,13 @@ const filteredItems = computed(() => {
           <img :src="getImageUrl(selectedBook.img)" @error="handleImageError" class="large-cover">
         </div>
         <div class="right-side">
-          <div class="stock-tag">● Op voorraad</div>
+          <div class="stock-tag">
+        ✓ Op voorraad: {{ selectedBook.stock_quantity }} stuks
+      </div>
+          <div v-if="selectedBook.is_bestseller == 1" class="bestseller-badge">
+        ⭐ Bestseller
+      </div>
+    
           <h1 class="book-title">{{ selectedBook.title }}</h1>
           <p class="author">Door: {{ selectedBook.author }}</p>
           <div class="description-box">
@@ -190,6 +196,113 @@ const filteredItems = computed(() => {
       </div>
     </div>
   </transition>
+
+  <div class="biebcomponent regular section"><ul class="toptask-items plain item-count-5">
+            <li class="my-library">
+                    <p>
+                        <a href="https://probiblio.hostedwise.nl/cgi-bin/bx.pl?vestnr=6025&amp;event=private">
+                            Mijn bibliotheek</a>
+                    </p>
+                </li>
+            <li class="agenda">
+                    <p>
+                        <a href="https://bibliotheekbollenstreek.op-shop.nl/">
+                            Agenda</a>
+                    </p>
+                </li>
+            <li class="collection">
+                    <p>
+                        <a href="https://www.bibliotheekbollenstreek.nl/collectie_.html">
+                            Aanbod</a>
+                    </p>
+                </li>
+            <li class="e-books">
+                    <p>
+                        <a href="https://www.onlinebibliotheek.nl/">
+                            Online bibliotheek</a>
+                    </p>
+                </li>
+            <li class="customer-service">
+                    <p>
+                        <a href="https://www.bibliotheekbollenstreek.nl/organisatie/reactie.html">
+                            Ik heb een vraag</a>
+                    </p>
+                </li>
+            </ul>
+    </div>
+    <div class="container size-3" id="homepostzegelbanner1">
+        <div class="column-1 column parbase">
+        <h3>Online leren &amp; oefenen</h3>
+        <div class="widget-bnl-combo bordered">
+            <div class="par_combo_widget parsys"><span class="image section">
+        <a href="https://www.bibliotheekbollenstreek.nl/leren/onlineleren.html">
+            <img class="bannerimage" src="https://www.bibliotheek.nl/beeldbank/banner/1080x400px-vrouw-in-zitzak-met-koptelefoon.jpg.rendition.792.1267.jpeg" srcset=" https://www.bibliotheek.nl/beeldbank/banner/1080x400px-vrouw-in-zitzak-met-koptelefoon.jpg.rendition.640.1024.jpeg 400w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-vrouw-in-zitzak-met-koptelefoon.jpg.rendition.792.1267.jpeg 600w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-vrouw-in-zitzak-met-koptelefoon.jpg.rendition.1280.2048.jpeg 800w" alt="naar de online cursussen">
+        </a>
+
+</span>
+<div class="richtext section">  
+        <p>Ontdek het veelzijdige online cursusaanbod van de bibliotheek! Oefen voor je <a href="https://theorie-nl.kb.idm.oclc.org/dashboard/auto/partnerexamens">CBR theorie-examen</a>, leer programmeren of volg een cursus fotografie. Gratis voor bibliotheekleden.&nbsp;<br>
+</p>
+</div>
+<p class="section">
+    <a href="https://www.bibliotheekbollenstreek.nl/leren/onlineleren.html" class="button tertiary">Naar online cursussen</a>
+</p>
+</div>
+        </div> 
+</div>
+        <div class="column-2 column parbase">
+        <h3>Activiteiten</h3>
+        <div class="widget-bnl-combo bordered">
+            <div class="par_combo_widget parsys"><span class="image section">
+        <a href="https://bibliotheekbollenstreek.op-shop.nl/">
+            <img class="bannerimage" src="https://www.bibliotheek.nl/beeldbank/banner/1080x400px-kinderen-in-de-maakplaats.jpg.rendition.792.1267.jpeg" srcset=" https://www.bibliotheek.nl/beeldbank/banner/1080x400px-kinderen-in-de-maakplaats.jpg.rendition.640.1024.jpeg 400w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-kinderen-in-de-maakplaats.jpg.rendition.792.1267.jpeg 600w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-kinderen-in-de-maakplaats.jpg.rendition.1280.2048.jpeg 800w" alt="bekijk de agenda">
+        </a>
+</span>
+<div class="richtext section">
+        <p>Van striptekenen en Lego-ateliers tot schrijversavonden, politiek cafés, taalcursussen en kledingruilavonden – er is voor elke leeftijd iets te doen in jouw bibliotheek!</p>
+</div>
+<p class="section">
+  <a href="https://bibliotheekbollenstreek.op-shop.nl/" class="button tertiary">
+        
+        Bekijk de agenda
+    </a>
+</p>
+</div>
+        </div>
+  
+</div>
+
+        <div class="column-3 column parbase">    
+        <h3>Digitale vaardigheden</h3>
+        <div class="widget-bnl-combo bordered">
+            <div class="par_combo_widget parsys"><span class="image section">
+        <a href="https://www.bibliotheekbollenstreek.nl/leren/digitaalmeedoen.html">
+            <img class="bannerimage" src="https://www.bibliotheek.nl/beeldbank/banner/1080x400px-man-met-een-grijze-baard-maakt-een-dansende-beweging.jpg.rendition.792.1267.jpeg" srcset=" https://www.bibliotheek.nl/beeldbank/banner/1080x400px-man-met-een-grijze-baard-maakt-een-dansende-beweging.jpg.rendition.640.1024.jpeg 400w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-man-met-een-grijze-baard-maakt-een-dansende-beweging.jpg.rendition.792.1267.jpeg 600w,  https://www.bibliotheek.nl/beeldbank/banner/1080x400px-man-met-een-grijze-baard-maakt-een-dansende-beweging.jpg.rendition.1280.2048.jpeg 800w" alt="ik heb een digitale vraag">
+        </a>
+</span>
+<div class="richtext section">
+        <p>Wil je beter leren omgaan met de computer, tablet of telefoon? Heb je hulp nodig bij het aanvragen van een DigiD of toeslag? Volg een cursus of kom naar een van onze spreekuren.&nbsp;<br>
+</p>
+</div>
+<p class="section">
+    <a href="https://www.bibliotheekbollenstreek.nl/leren/digitaalmeedoen.html" class="button tertiary">
+        
+        Ik heb een digitale vraag
+    </a>
+
+</p>
+
+</div>
+
+        </div>
+    
+    
+</div>
+
+
+        
+    
+</div>
 </div>
 </template>
 
@@ -295,6 +408,29 @@ const filteredItems = computed(() => {
   font-weight: 800;
   margin: 0;
 }
+ul.toptask-items.plain.item-count-5 {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    /* align-items: center; */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+div#homepostzegelbanner1 {
+    display: flex;
+    gap: 68px;
+    justify-content: center;
+    /* align-items: center; */
+    list-style: none;
+    padding: 0;
+    margin-top: 180px;
+}
+img.bannerimage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
 /* --- Responsive for Mobile --- */
 @media (max-width: 768px) {
@@ -312,6 +448,14 @@ const filteredItems = computed(() => {
     grid-template-columns: 1fr;
     max-width: 300px;
   }
+
+  ul.toptask-items.plain.item-count-5 {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+img.bannerimage {
+    width: 100%;
+}
 }
 
 /* --- Rest of the styles (Modal, Book Details, etc.) --- */
