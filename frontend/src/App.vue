@@ -95,13 +95,13 @@ const filteredItems = computed(() => {
   <header class="navbar">
     <div class="nav-content">
       <div class="logo">Forum <span>Library</span></div>
-      <div class="search-bar">
-        <input type="text" placeholder="Zoek boeken...">
+      <div class="search-bar" >
+        <input  id="zoekBar" placeholder="Zoek boeken...">
       </div>
       <div class="auth-group">
         <template v-if="!currentUser">
-          <button class="nav-btn" @click="isRegisterMode = false; toggleLoginModal()">Inloggen</button>
-          <button class="nav-btn primary" @click="isRegisterMode = true; toggleLoginModal()">Word lid</button>
+          <button class="nav-btn" @click="isRegisterMode = false; toggleLoginModal()" style="background-color: blanchedalmond">Inloggen</button>
+          <button class="nav-btn primary" @click="isRegisterMode = true; toggleLoginModal()" style="background-color: blanchedalmond">Word lid</button>
         </template>
         <template v-else>
           <span class="user-name">Welcome, {{ currentUser.username }}</span>
@@ -143,8 +143,8 @@ const filteredItems = computed(() => {
           <div class="stock-tag">
         ✓ Op voorraad: {{ selectedBook.stock_quantity }} stuks
       </div>
-          <div v-if="selectedBook.is_bestseller == 1" class="bestseller-badge">
-        ⭐ Bestseller
+          <div  class="bestseller-badge">
+        ⭐ Bestseller{{selectedBook.is_bestseller}}
       </div>
     
           <h1 class="book-title">{{ selectedBook.title }}</h1>
@@ -154,8 +154,8 @@ const filteredItems = computed(() => {
             <p>{{ selectedBook.summary }}</p>
           </div>
           <div class="price-row">
-            <button class="btn-action rent">Lenen €{{ selectedBook.rent_price }}</button>
-            <button class="btn-action buy">Kopen €{{ selectedBook.buy_price }}</button>
+            <button class="btn-action rent" style="background-color: aquamarine;"> Reserveren </button>
+            <button class="btn-action buy">Mijn lijsten</button>
           </div>
           <button @click="selectedBook = null" class="back-link">Terug naar lijst</button>
         </div>
@@ -285,24 +285,23 @@ const filteredItems = computed(() => {
 </p>
 </div>
 <p class="section">
-    <a href="https://www.bibliotheekbollenstreek.nl/leren/digitaalmeedoen.html" class="button tertiary">
-        
-        Ik heb een digitale vraag
-    </a>
-
-</p>
-
+    <a href="https://www.bibliotheekbollenstreek.nl/leren/digitaalmeedoen.html" class="button tertiary">Ik heb een digitale vraag</a></p>
 </div>
-
         </div>
-    
-    
+</div> 
 </div>
-
-
-        
-    
-</div>
+<footer class="footer">
+    <div class="footer-content">
+      <p class="copyright">
+        &copy; 2024 Forum Library. All rights reserved.
+      </p>
+      <div class="footer-links">
+        <span>Privacy Policy</span>
+        <span>Terms of Service</span>
+        <span>Contact Us</span>
+      </div>
+    </div>
+  </footer>
 </div>
 </template>
 
@@ -344,22 +343,38 @@ const filteredItems = computed(() => {
 
 /* --- Navbar: Fixed top --- */
 .navbar {
-  background: var(--bg-card);
-  border-bottom: 3px solid var(--primary-indigo);
-  padding: 0.8rem 0;
+  background: orange;
+  border-bottom: 0 solid var(--primary-indigo);
+  padding: 0;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
 }
 
 .nav-content {
-  max-width: 1200px;
+ 
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
+  padding: 0 ;
+  background-color: orange;
 }
+.auth-group {
+    
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+}
+span.user-name {
+    margin-top: 10px;
+}
+
+input#zoekBar {
+    width: 400px;
+    height: 35px;
+}
+
 
 /* --- Main Container --- */
 .container {
@@ -379,7 +394,7 @@ const filteredItems = computed(() => {
 }
 
 .square-card {
-  background: var(--bg-card);
+  background: orange;
   aspect-ratio: 1 / 1; /* Keeps them perfectly square */
   border-radius: 24px;
   display: flex;
@@ -432,6 +447,54 @@ img.bannerimage {
     object-fit: cover;
 }
 
+/* --- Footer Styling --- */
+.footer {
+  background-color: var(--bg-card); /* White background to match navbar */
+  border-top: 3px solid var(--primary-indigo); /* Top border for clear separation */
+  padding: 2rem 0;
+  margin-top: 4rem; /* Spacing from main content */
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  background-color: orange;
+}
+
+
+
+.copyright {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-links span {
+  font-size: 0.9rem;
+  color: var(--primary-indigo);
+  font-weight: 700;
+  cursor: pointer;
+  transition: text-decoration 0.3s;
+}
+
+.footer-links span:hover {
+  text-decoration: underline;
+}
+
+
 /* --- Responsive for Mobile --- */
 @media (max-width: 768px) {
   .card-grid {
@@ -440,6 +503,11 @@ img.bannerimage {
   }
   .icon { font-size: 3.5rem; }
   .square-card h3 { font-size: 1.1rem; }
+
+  .footer-content {
+    flex-direction: column; /* Horizontal layout on desktop */
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 480px) {
@@ -490,7 +558,7 @@ img.bannerimage {
 }
 
 .modal-box {
-  background: white;
+  background: #ebcf9d;
   padding: 2.5rem;
   border-radius: 24px;
   width: 90%;
