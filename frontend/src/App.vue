@@ -15,8 +15,8 @@ const handleImageError = (e) => {
 };
 
 const items = ref([]);
-const mylist = ref([]);
-const isListModalOpen = ref([]);
+const myList = ref([]);
+const isListModalOpen = ref(false);
 const selectionPath = ref([]);
 const selectedBook = ref(null);
 const isLoginModalOpen = ref(false);
@@ -90,10 +90,10 @@ const filteredItems = computed(() => {
     return { ...item, icon };
   });
 });
-const addToMyList =(book) => {
-  const exists = mylist.value.find(items => item.book_id === book.book_id);
+const addToMyList = (book) => {
+  const exists = myList.value.find(item => item.book_id === book.book_id);
   if (!exists)  {
-    mylist.value.push(book);
+    myList.value.push(book);
     alert(`"${book.title}" is toegevoegd aan je lijst!`);
   }else{
     alert("Dit boek staat al in je lijst.");
@@ -173,16 +173,16 @@ const myListCount = computed(() => myList.value.length);
             <div class="price-card highlight">
               <span>Status</span>
               <p>Beschikbaar</p>
-              <button class="btn-action buy" style="background-color: aquamarine;"> Reserveren </button>
+              <button @click="addToMyList(selectedBook)" class="btn-action buy" style="background-color: aquamarine;"> Reserveren </button>
             </div>
             <div class="price-card">
               <span>Mijn Selectie</span>
               <p>{{ myListCount }} Boeken</p>
-              <button class="btn-action rent">Mijn lijsten</button>
+              <button @click="isListModalOpen = true" class="btn-action rent">Mijn lijsten</button>
             </div>
             
           </div>
-          <button @click="selectedBook = null" class="back-link">Terug naar lijst</button>
+          <button @click="is = null" class="back-link">Terug naar lijst</button>
         </div>
       </div>
     </div>
@@ -222,39 +222,6 @@ const myListCount = computed(() => myList.value.length);
     </div>
   </transition>
 
-  <div class="biebcomponent regular section"><ul class="toptask-items plain item-count-5">
-            <li class="my-library">
-                    <p>
-                        <a href="https://probiblio.hostedwise.nl/cgi-bin/bx.pl?vestnr=6025&amp;event=private">
-                            Mijn bibliotheek</a>
-                    </p>
-                </li>
-            <li class="agenda">
-                    <p>
-                        <a href="https://bibliotheekbollenstreek.op-shop.nl/">
-                            Agenda</a>
-                    </p>
-                </li>
-            <li class="collection">
-                    <p>
-                        <a href="https://www.bibliotheekbollenstreek.nl/collectie_.html">
-                            Aanbod</a>
-                    </p>
-                </li>
-            <li class="e-books">
-                    <p>
-                        <a href="https://www.onlinebibliotheek.nl/">
-                            Online bibliotheek</a>
-                    </p>
-                </li>
-            <li class="customer-service">
-                    <p>
-                        <a href="https://www.bibliotheekbollenstreek.nl/organisatie/reactie.html">
-                            Ik heb een vraag</a>
-                    </p>
-                </li>
-            </ul>
-    </div>
     <div class="container size-3" id="homepostzegelbanner1">
         <div class="column-1 column parbase">
         <h3>Online leren &amp; oefenen</h3>
@@ -317,12 +284,12 @@ const myListCount = computed(() => myList.value.length);
 </div>
 <div v-if="isListModalOpen" class="modal-overlay" @click.self="isListModalOpen = false">
   <div class="modal-box list-popup">
-    <button class="closew-modal" @click="isListModalOpen = false">×</button>
+    <button class="close-modal" @click="isListModalOpen = false">×</button>
      <h2>Mijn Gereserveede Boeken</h2>
 
-     <div v-if="myList.length === 0" class="empaty-msg">Je Lijst is nog leeg</div>
+     <div v-if="myList.length === 0" class="empty-msg">Je Lijst is nog leeg</div>
 
-     <div v-else class="list.items-container">
+     <div v-else class="list-items-container">
       <div v-for="(book, index) in myList" :key="index" class="small-list-row">
         <img :src="getImageUrl(book.img)" @error="handleImageError" class="micro-img">
         <div class="list-info">
@@ -332,7 +299,7 @@ const myListCount = computed(() => myList.value.length);
         <button @click="removeFromList(index)" class="btn-remove">Verwijder</button>
       </div>
      </div>
-     <button v-if="mylist.length > 0" class="btn-submit-full" @click="alert('Bedankt! Je reservering is verwerkt.')">
+     <button v-if="myList.length > 0" class="btn-submit-full" @click="alert('Bedankt! Je reservering is verwerkt.')">
       Bevastig Reserveren
      </button>
   </div>
@@ -436,7 +403,7 @@ input#zoekBar {
   /* Forces 3 columns side-by-side on desktop */
   grid-template-columns: repeat(3, 1fr); 
   gap: 2rem;
-  margin: 20rem auto;
+  margin: 10rem auto;
   max-width: 1000px; /* Limits width to keep cards square and neat */
 }
 
