@@ -15,6 +15,8 @@ const handleImageError = (e) => {
 };
 
 const items = ref([]);
+const mylist = ref([]);
+const isListModalOpen = ref([]);
 const selectionPath = ref([]);
 const selectedBook = ref(null);
 const isLoginModalOpen = ref(false);
@@ -80,7 +82,7 @@ const progressPercentage = computed(() => (selectionPath.value.length / 5) * 100
 const filteredItems = computed(() => {
   const data = selectionPath.value.length === 0 ? items.value.slice(0, 3) : items.value;
   return data.map(item => {
-    let icon = '📖'; // Default
+    let icon = '📖';
     const name = item.content.category_name?.toLowerCase() || '';
     if (name.includes('kinderen')) icon = '🧸';
     else if (name.includes('volwassenen')) icon = '👨‍💼';
@@ -88,6 +90,20 @@ const filteredItems = computed(() => {
     return { ...item, icon };
   });
 });
+const addToMyList =(book) => {
+  const exists = mylist.value.find(items => item.book_id === book.book_id);
+  if (!exists)  {
+    mylist.value.push(book);
+    alert(`"${book.title}" is toegevoegd aan je lijst!`);
+  }else{
+    alert("Dit boek staat al in je lijst.");
+  }
+};
+
+const removeFromList = (index) => {
+  myList.value.splice(index, 1);
+};
+const myListCount = computed(() => myList.value.length);
 </script>
 
 <template>
@@ -153,9 +169,18 @@ const filteredItems = computed(() => {
             <h4>Over dit boek</h4>
             <p>{{ selectedBook.summary }}</p>
           </div>
-          <div class="price-row">
-            <button class="btn-action rent" style="background-color: aquamarine;"> Reserveren </button>
-            <button class="btn-action buy">Mijn lijsten</button>
+          <div class="price-info-grid">
+            <div class="price-card highlight">
+              <span>Status</span>
+              <p>Beschikbaar</p>
+              <button class="btn-action buy" style="background-color: aquamarine;"> Reserveren </button>
+            </div>
+            <div class="price-card">
+              <span>Mijn Selectie</span>
+              <p>{{ myListCount }} Boeken</p>
+              <button class="btn-action rent">Mijn lijsten</button>
+            </div>
+            
           </div>
           <button @click="selectedBook = null" class="back-link">Terug naar lijst</button>
         </div>
@@ -289,6 +314,28 @@ const filteredItems = computed(() => {
 </div>
         </div>
 </div> 
+</div>
+<div v-if="isListModalOpen" class="modal-overlay" @click.self="isListModalOpen = false">
+  <div class="modal-box list-popup">
+    <button class="closew-modal" @click="isListModalOpen = false">×</button>
+     <h2>Mijn Gereserveede Boeken</h2>
+
+     <div v-if="myList.length === 0" class="empaty-msg">Je Lijst is nog leeg</div>
+
+     <div v-else class="list.items-container">
+      <div v-for="(book, index) in myList" :key="index" class="small-list-row">
+        <img :src="getImageUrl(book.img)" @error="handleImageError" class="micro-img">
+        <div class="list-info">
+          <h4>{{ book.title }}</h4>
+          <p>{{ book.author }}</p>
+        </div>
+        <button @click="removeFromList(index)" class="btn-remove">Verwijder</button>
+      </div>
+     </div>
+     <button v-if="mylist.length > 0" class="btn-submit-full" @click="alert('Bedankt! Je reservering is verwerkt.')">
+      Bevastig Reserveren
+     </button>
+  </div>
 </div>
 <footer class="footer">
     <div class="footer-content">
