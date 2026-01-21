@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 16 jan 2026 om 14:43
+-- Gegenereerd op: 21 jan 2026 om 13:14
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -45,7 +45,13 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `title`, `author`, `summary`, `category_id`, `buy_price`, `rent_price`, `stock_quantity`, `is_bestseller`, `img`) VALUES
-(1, 'Beer en Vogel gaan op avontuur in Winter Wonderland', 'Lambert, Jonny', 'Het heeft gesneeuwd! Beer en Vogel gaan wandelen in de bergen. Daar zien ze allerlei winterse taferelen. Kijk je mee? Prentenboek met zoekplaten in kleur. Vanaf ca. 2 jaar.', 27, 20.00, 5.00, 3, 2, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2025230197;ppn=449739317;isbn=9789048323098;key=1617083;');
+(1, 'Beer en Vogel gaan op avontuur in Winter Wonderland', 'Lambert, Jonny', 'Het heeft gesneeuwd! Beer en Vogel gaan wandelen in de bergen. Daar zien ze allerlei winterse taferelen. Kijk je mee? Prentenboek met zoekplaten in kleur. Vanaf ca. 2 jaar.', 27, 20.00, 5.00, 3, 2, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2025230197;ppn=449739317;isbn=9789048323098;key=1617083;'),
+(2, 'Koen gaat op reis', 'Zanden, Monique van der', 'Eekhoorn Koen zit in zijn boom en wil naar zijn neef Joep gaan, maar die woont bij de beek. Dat is ver weg. Lukt het Koen om zijn neef te vinden? Met gekleurde illustraties. Vanaf ca. 6 jaar.', 27, 10.00, 25.00, 3, 8, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2024240955;ppn=443092699;isbn=9789062389780;key=1603468;'),
+(3, 'Wie redt de magische boeken?', 'George, Nina', 'Vier vrienden ontdekken een geheime bibliotheek met magische wezens. Dat is uniek, want in hun wereld zijn boeken verboden. Zal het de vrienden lukken om de boeken te redden? Vanaf ca. 10 jaar.', 27, 15.00, 7.00, 3, 3, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2025110569;ppn=444726039;isbn=9789025888565;key=1603608;'),
+(4, 'Elf minuten', 'Coelho, Paulo', 'Om een relatie met een jonge schilder aan te kunnen gaan moet een Braziliaanse prostituee met haar vroegere leven en beroep in het reine zien te komen.', 2, 30.00, 20.00, 17, 15, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2014102220;ppn=372469620;isbn=9789029589499;key=941630;'),
+(5, 'De alchemist', 'Coelho, Paulo', 'De zoektocht van een Andalusische herdersjongen naar de ware levenswijsheid brengt hem naar de Egyptische piramiden.', 2, 35.00, 20.00, 5, 12, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2013133152;ppn=356195279;isbn=9789029588607;key=804560;'),
+(6, 'Atlas van het Westland :\r\n10.000 jaar ruimtelijke ontwikkeling', 'IJsselstijn, Marcel', 'Het Westland is meer dan alleen een \'glazen stad\'. Het heeft een rijke en afwisselende landschapsgeschiedenis en die krijgt in deze atlas in groot formaat ...', 3, 40.00, 25.00, 5, 2, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2016312014;ppn=406335125;isbn=9789068687200;key=1086073;'),
+(7, 'Het verzet van mijn vader', 'Maas, Frank', 'Biografie van de Nederlandse communist en verzetsstrijder (1913-1988). Met foto’s, portretten en illustraties.', 3, 45.00, 30.00, 2, 5, 'https://bibliotheek.wise.oclc.org/cgi-bin/momredir.pl?size=280&lid=2024512210;ppn=443837244;isbn=9789492335562;key=1597359;');
 
 -- --------------------------------------------------------
 
@@ -72,7 +78,6 @@ INSERT INTO `categories` (`category_id`, `category_name`, `parent_id`, `level`) 
 (5, 'Fantasy', 1, 2),
 (8, 'Dieren', 1, 2),
 (9, 'Vriendschap', 1, 2),
-(10, '', NULL, NULL),
 (11, 'Vrolijk', 4, 3),
 (12, 'Spannend', 5, 3),
 (13, 'Grappig', 5, 3),
@@ -140,6 +145,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Gegevens worden geëxporteerd voor tabel `users`
+--
+
+INSERT INTO `users` (`user_id`, `full_name`, `email`, `password_hash`, `role`, `created_at`) VALUES
+(3, 'Midf', 'kjbcdksc@ncc.com', '$2y$10$WKJ9/sJVrNDIeZewjwJeXuOsu/MyeFGU/yU2S/ja58ac/EDO.X.du', '', '2026-01-19 12:05:18'),
+(6, 'Mir', 'Mirnassrc@ncc.com', '$2y$10$VFEpiKzJqKLbZKkd.7qMb.tGcq8wCiViJStJ04p7Qy.1TDF2KWKC2', '', '2026-01-19 14:30:39'),
+(7, 'mif', 'nfed@dffk.com', '$2y$10$HJlPUzB7MZYS5VjtITDcM.MmWp6ygX6W64Owt.W7iqYuTAj4K17Nq', '', '2026-01-20 12:16:23'),
+(9, 'jhdcsd', 'kjdvd@dffk.com', '$2y$10$hHmNOTu66zEcEHQJdQIKteocID9gCj/t/L758SWQkBM76mOFmye2K', '', '2026-01-20 14:05:45'),
+(10, 'Sbds', 'kjsdjbd@dffk.com', '$2y$10$TC353HnYBNH82KcPfSvUgOaALxvR01JVo8NiNgykJIb5eftZwi.z2', '', '2026-01-21 10:00:20');
+
+--
 -- Indexen voor geëxporteerde tabellen
 --
 
@@ -187,7 +203,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `categories`
@@ -211,7 +227,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
